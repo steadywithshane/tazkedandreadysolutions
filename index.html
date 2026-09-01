@@ -286,6 +286,18 @@
       gap: 18px;
       margin-top: 32px;
     }
+    .marquee { margin-top: 28px; display: grid; gap: 14px; overflow: hidden; }
+    .mq-row { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+    .mq-track { display: flex; width: max-content; gap: 14px; }
+    .mq-card { width: min(520px, 82vw); flex: 0 0 min(520px, 82vw); }
+    .mq-left .mq-track { animation: mq-left 42s linear infinite; }
+    .mq-right .mq-track { animation: mq-right 48s linear infinite; }
+    .marquee:hover .mq-track { animation-play-state: paused; }
+    @keyframes mq-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes mq-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .mq-left .mq-track, .mq-right .mq-track { animation: none; }
+    }
     .slider-wrap { position: relative; margin-top: 28px; }
     .slider-viewport { overflow: hidden; }
     .slider-track {
@@ -466,7 +478,7 @@
     <p class="section-kicker">What I take</p>
     <h2>The unglamorous work that runs the business.</h2>
     <div class="grid-4">
-      <article class="card"><h3>Email & follow-ups</h3><p>Inbox triage, replies, and the messages that should have gone out yesterday.</p></article>
+      <article class="card"><h3>Email & follow-ups</h3><p>Inbox triage, replies, and the messages that should have gone out yesterday. If a lead needs a human follow-up call, I can take that too.</p></article>
       <article class="card"><h3>Scheduling</h3><p>Calendar, confirmations, reschedules, and keeping the week from collapsing.</p></article>
       <article class="card"><h3>General admin</h3><p>Docs, trackers, coordination, and the small tasks that stack up.</p></article>
       <article class="card"><h3>New venture setup</h3><p>You want to enter something new and feel stuck. I take the research and messy setup and get a first version running.</p></article>
@@ -476,32 +488,9 @@
   <section>
     <p class="section-kicker">From previous client work</p>
     <h2>People don’t remember the tools. They remember the breathing room.</h2>
-    <div class="slider-wrap">
-      <div class="slider-viewport" id="slView">
-        <div class="slider-track" id="slTrack">
-          <article class="quote">
-            <blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote>
-            <p class="who">Founder · online business · ops support</p>
-          </article>
-          <article class="quote">
-            <blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote>
-            <p class="who">Erik E. · Operations Head</p>
-          </article>
-          <article class="quote">
-            <blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote>
-            <p class="who">Arjoe L. · Business Unit Head</p>
-          </article>
-          <article class="quote">
-            <blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote>
-            <p class="who">Brand owner · Amazon work · Sep 2025</p>
-          </article>
-        </div>
-      </div>
-      <div class="slider-nav">
-        <button class="sl-btn" type="button" id="slPrev" aria-label="Previous">‹</button>
-        <button class="sl-btn" type="button" id="slNext" aria-label="Next">›</button>
-        <div class="sl-dots" id="slDots"></div>
-      </div>
+        <div class="marquee" aria-label="Client comments">
+      <div class="mq-row mq-left"><div class="mq-track"><article class="quote mq-card"><blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote><p class="who">Founder · online business · ops support</p></article><article class="quote mq-card"><blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote><p class="who">Arjoe L. · Business Unit Head</p></article><article class="quote mq-card"><blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote><p class="who">Founder · online business · ops support</p></article><article class="quote mq-card"><blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote><p class="who">Arjoe L. · Business Unit Head</p></article><article class="quote mq-card"><blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote><p class="who">Founder · online business · ops support</p></article><article class="quote mq-card"><blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote><p class="who">Arjoe L. · Business Unit Head</p></article><article class="quote mq-card"><blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote><p class="who">Founder · online business · ops support</p></article><article class="quote mq-card"><blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote><p class="who">Arjoe L. · Business Unit Head</p></article></div></div>
+      <div class="mq-row mq-right"><div class="mq-track"><article class="quote mq-card"><blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote><p class="who">Erik E. · Operations Head</p></article><article class="quote mq-card"><blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote><p class="who">Brand owner · Amazon work · Sep 2025</p></article><article class="quote mq-card"><blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote><p class="who">Erik E. · Operations Head</p></article><article class="quote mq-card"><blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote><p class="who">Brand owner · Amazon work · Sep 2025</p></article><article class="quote mq-card"><blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote><p class="who">Erik E. · Operations Head</p></article><article class="quote mq-card"><blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote><p class="who">Brand owner · Amazon work · Sep 2025</p></article><article class="quote mq-card"><blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote><p class="who">Erik E. · Operations Head</p></article><article class="quote mq-card"><blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote><p class="who">Brand owner · Amazon work · Sep 2025</p></article></div></div>
     </div>
   </section>
 
@@ -510,7 +499,7 @@
       <div>
         <p class="section-kicker">About</p>
         <h2>I’m Shane. I stay with the business as it changes.</h2>
-        <p class="about-note">I started as a VA in 2022 with one founder — still with her. We went from Shopify to Amazon to GoHighLevel (site, funnels, emails, courses) and social. Before that I was an executive assistant and assistant project manager. When a CEO wanted a new venture standing up, I did the research and setup.</p>
+        <p class="about-note">I started as a VA in 2022 with one founder, and I’m still with her. We went from Shopify to Amazon to GoHighLevel (site, funnels, emails, courses) and social. Before that I was an executive assistant and assistant project manager. When a CEO wanted a new venture standing up, I did the research and setup.</p>
         <p class="about-note">Founder-led, not an agency pitch. You tell me what’s stuck. We pick one lane. If it’s outside what I should own, I’ll say so.</p>
       </div>
       <div class="faq">
@@ -532,7 +521,7 @@
         </details>
         <details>
           <summary>Where are you based?</summary>
-          <p>Philippines. I work with clients in the US, UK, and Australia around overlapping hours.</p>
+          <p>Philippines. I’ve worked with clients in the US, UK, and Australia. Local work is welcome too — we just pick hours that overlap.</p>
         </details>
       </div>
     </div>
@@ -580,40 +569,6 @@
       });
     });
 
-    (function () {
-      const track = document.getElementById("slTrack");
-      const view = document.getElementById("slView");
-      const dotsWrap = document.getElementById("slDots");
-      if (!track || !view) return;
-      const slides = Array.from(track.children);
-      let i = 0, startX = 0;
-      slides.forEach((_, n) => {
-        const d = document.createElement("button");
-        d.className = "sl-dot" + (n === 0 ? " on" : "");
-        d.type = "button";
-        d.setAttribute("aria-label", "Go to quote " + (n + 1));
-        d.addEventListener("click", () => go(n));
-        dotsWrap.appendChild(d);
-      });
-      function go(n) {
-        i = (n + slides.length) % slides.length;
-        track.style.transform = "translateX(" + (-i * 100) + "%)";
-        dotsWrap.querySelectorAll(".sl-dot").forEach((d, k) => d.classList.toggle("on", k === i));
-      }
-      document.getElementById("slPrev").addEventListener("click", () => go(i - 1));
-      document.getElementById("slNext").addEventListener("click", () => go(i + 1));
-      view.addEventListener("pointerdown", (e) => { startX = e.clientX; });
-      view.addEventListener("pointerup", (e) => {
-        const dx = e.clientX - startX;
-        if (dx > 40) go(i - 1);
-        if (dx < -40) go(i + 1);
-      });
-      setInterval(() => {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        if (document.hidden) return;
-        go(i + 1);
-      }, 6500);
-    })();
   </script>
 </body>
 </html>
