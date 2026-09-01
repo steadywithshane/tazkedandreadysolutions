@@ -280,6 +280,45 @@
       grid-template-columns: 1.2fr 1fr;
       gap: 16px;
     }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 32px;
+    }
+    .slider-wrap { position: relative; margin-top: 28px; }
+    .slider-viewport { overflow: hidden; }
+    .slider-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.22,1,.36,1);
+    }
+    .slider-track .quote {
+      flex: 0 0 100%;
+      min-width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .slider-nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .sl-btn {
+      width: 44px; height: 44px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--white);
+      font-size: 22px; line-height: 1; color: var(--ink); cursor: pointer;
+    }
+    .sl-btn:hover { border-color: var(--ink); }
+    .sl-dots { display: flex; gap: 8px; margin-left: 8px; }
+    .sl-dot {
+      width: 8px; height: 8px; border-radius: 99px; background: var(--line);
+      border: 0; padding: 0; cursor: pointer;
+    }
+    .sl-dot.on { background: var(--clay, #b85a3d); width: 22px; }
+    @media (prefers-reduced-motion: reduce) {
+      .slider-track { transition: none; }
+    }
     .quote {
       background: var(--white);
       border: 1px solid var(--line);
@@ -346,7 +385,7 @@
     .book p { color: rgba(255,250,243,.72); margin: 0 auto 24px; max-width: 32rem; }
 
     @media (max-width: 860px) {
-      .hero, .quotes, .split, .grid-3 { grid-template-columns: 1fr; }
+      .hero, .quotes, .split, .grid-3, .grid-4 { grid-template-columns: 1fr; }
       nav, .hero, section, footer, .picker, .book { padding-left: 22px; padding-right: 22px; }
       .picker, .book { margin-left: 12px; margin-right: 12px; }
       .float-card { position: static; margin-top: 16px; width: auto; }
@@ -391,6 +430,7 @@
       <button class="chip" data-line="Scheduling. I’d own the calendar, confirmations, and the back-and-forth so you only show up.">Scheduling ping-pong</button>
       <button class="chip" data-line="Follow-ups. I’d run a simple cadence so warm leads don’t go cold while you’re with clients.">Leads go quiet</button>
       <button class="chip" data-line="Light social and admin. I’d keep the page alive and the busywork off your desk.">Social + random admin</button>
+      <button class="chip" data-line="New venture setup. I’d take the research and messy setup — tools, pages, listings, the first systems — so you can move instead of staring at a blank start.">I want to start something new</button>
       <button class="chip" data-line="All of it, a little. That’s common. We’d pick one lane for the trial so you can feel the difference fast.">I’m doing all of it</button>
     </div>
     <div class="picker-out" id="pickerOut"></div>
@@ -425,33 +465,43 @@
   <section>
     <p class="section-kicker">What I take</p>
     <h2>The unglamorous work that runs the business.</h2>
-    <div class="grid-3">
+    <div class="grid-4">
       <article class="card"><h3>Email & follow-ups</h3><p>Inbox triage, replies, and the messages that should have gone out yesterday.</p></article>
       <article class="card"><h3>Scheduling</h3><p>Calendar, confirmations, reschedules, and keeping the week from collapsing.</p></article>
       <article class="card"><h3>General admin</h3><p>Docs, trackers, coordination, and the small tasks that stack up.</p></article>
+      <article class="card"><h3>New venture setup</h3><p>You want to enter something new and feel stuck. I take the research and messy setup and get a first version running.</p></article>
     </div>
   </section>
 
   <section>
     <p class="section-kicker">From previous client work</p>
     <h2>People don’t remember the tools. They remember the breathing room.</h2>
-    <div class="quotes">
-      <article class="quote wide">
-        <blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote>
-        <p class="who">Founder · online business · ops support</p>
-      </article>
-      <article class="quote">
-        <blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote>
-        <p class="who">Erik E. · Operations Head</p>
-      </article>
-      <article class="quote">
-        <blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote>
-        <p class="who">Arjoe L. · Business Unit Head</p>
-      </article>
-      <article class="quote wide">
-        <blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote>
-        <p class="who">Brand owner · Amazon work · Sep 2025</p>
-      </article>
+    <div class="slider-wrap">
+      <div class="slider-viewport" id="slView">
+        <div class="slider-track" id="slTrack">
+          <article class="quote">
+            <blockquote>“I really appreciate you handling the calendars, the data, the scheduling, keeping the whole thing running week to week. You handle a lot of the behind-the-scenes that I don’t have to.”</blockquote>
+            <p class="who">Founder · online business · ops support</p>
+          </article>
+          <article class="quote">
+            <blockquote>“Shane is one of the most reliable employees I have worked with. You give her the tasks and she’ll make it happen.”</blockquote>
+            <p class="who">Erik E. · Operations Head</p>
+          </article>
+          <article class="quote">
+            <blockquote>“Highly organized, detail-oriented, and proactive… made my job much easier.”</blockquote>
+            <p class="who">Arjoe L. · Business Unit Head</p>
+          </article>
+          <article class="quote">
+            <blockquote>“Margins have more than doubled since you took over. Let’s keep that momentum going and focus on scaling.”</blockquote>
+            <p class="who">Brand owner · Amazon work · Sep 2025</p>
+          </article>
+        </div>
+      </div>
+      <div class="slider-nav">
+        <button class="sl-btn" type="button" id="slPrev" aria-label="Previous">‹</button>
+        <button class="sl-btn" type="button" id="slNext" aria-label="Next">›</button>
+        <div class="sl-dots" id="slDots"></div>
+      </div>
     </div>
   </section>
 
@@ -459,9 +509,9 @@
     <div class="split">
       <div>
         <p class="section-kicker">About</p>
-        <h2>I’m Shane. I like making the week feel lighter.</h2>
-        <p class="about-note">I’ve done admin support, executive operations, project coordination, and Amazon account work. I’m building this as a focused VA service — founder-led, not a big agency pitch.</p>
-        <p class="about-note">If a task is outside what I should own, I’ll tell you. Sometimes I’ll introduce someone from my network. The first relationship is with me.</p>
+        <h2>I’m Shane. I stay with the business as it changes.</h2>
+        <p class="about-note">I started as a VA in 2022 with one founder — still with her. We went from Shopify to Amazon to GoHighLevel (site, funnels, emails, courses) and social. Before that I was an executive assistant and assistant project manager. When a CEO wanted a new venture standing up, I did the research and setup.</p>
+        <p class="about-note">Founder-led, not an agency pitch. You tell me what’s stuck. We pick one lane. If it’s outside what I should own, I’ll say so.</p>
       </div>
       <div class="faq">
         <details open>
@@ -471,6 +521,10 @@
         <details>
           <summary>Do I need to know what to delegate?</summary>
           <p>No. That’s what the 15-minute chat is for. We pick one clear lane for the trial.</p>
+        </details>
+        <details>
+          <summary>Can you help me start something new?</summary>
+          <p>Yes. If you want to enter a new venture and feel lost in the setup, I take the messy research and get a first version standing — site, funnel, listing, or ops — then we decide what continues.</p>
         </details>
         <details>
           <summary>Is this an agency?</summary>
@@ -525,6 +579,41 @@
         out.classList.add("show");
       });
     });
+
+    (function () {
+      const track = document.getElementById("slTrack");
+      const view = document.getElementById("slView");
+      const dotsWrap = document.getElementById("slDots");
+      if (!track || !view) return;
+      const slides = Array.from(track.children);
+      let i = 0, startX = 0;
+      slides.forEach((_, n) => {
+        const d = document.createElement("button");
+        d.className = "sl-dot" + (n === 0 ? " on" : "");
+        d.type = "button";
+        d.setAttribute("aria-label", "Go to quote " + (n + 1));
+        d.addEventListener("click", () => go(n));
+        dotsWrap.appendChild(d);
+      });
+      function go(n) {
+        i = (n + slides.length) % slides.length;
+        track.style.transform = "translateX(" + (-i * 100) + "%)";
+        dotsWrap.querySelectorAll(".sl-dot").forEach((d, k) => d.classList.toggle("on", k === i));
+      }
+      document.getElementById("slPrev").addEventListener("click", () => go(i - 1));
+      document.getElementById("slNext").addEventListener("click", () => go(i + 1));
+      view.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+      view.addEventListener("pointerup", (e) => {
+        const dx = e.clientX - startX;
+        if (dx > 40) go(i - 1);
+        if (dx < -40) go(i + 1);
+      });
+      setInterval(() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        if (document.hidden) return;
+        go(i + 1);
+      }, 6500);
+    })();
   </script>
 </body>
 </html>
